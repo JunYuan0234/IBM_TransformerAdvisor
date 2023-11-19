@@ -27,6 +27,8 @@ This documentation includes the following **steps**:
 
 - Step 4: Dive into the analysis phase to review and understand the recommendations provided.
 
+- Step 5: Migration Demonstration
+
 ## Step 1 : Establish a Transformation Advisor Workspace and Collection.
 
 In this demo journey, the objective is to leverage Transformation Advisor for a meticulous assessment of migration effort. The focal point is the transition of Customer Order Services application from the conventional WebSphere V 8.5.5 to a modern, cloud-ready runtime with minimal adjustments to the existing code. To initiate the utilization of Transformation Advisor (TA), the initial step involves the creation of a Workspace and Collection.
@@ -201,20 +203,75 @@ Within this section, various recommendations are outlined, including:
 
 ![Initial landing Page](/Image/19.png)
 
-Go back to the Recommendation page as shown on the image above and click the CustomerOrderServicesApp.ear application name on the WebSphere Liberty row.
+1. Go back to the Recommendation page as shown on the image above and click the CustomerOrderServicesApp.ear application name on the WebSphere Liberty row.
 
 ![Initial landing Page](/Image/27.png)
 
-Let's focus on the Transformation Advisor recommendations specific to the Customer Order Services (CustomerOrderServicesApp.ear) application concerning WebSphere Liberty. According to Transformation Advisor's estimation, the effort required to migrate this application from traditional WebSphere V855 to WebSphere Liberty (which supports JEE6 partly, Java EE 7 and 8, and more) is estimate to take 0.5 days of development time. Now, let's examine the analysis details for the Customer Order Services application to understand why the migration efforts for WebSphere Liberty are less than those for Open Liberty. 
+2. Let's focus on the Transformation Advisor recommendations specific to the Customer Order Services (CustomerOrderServicesApp.ear) application concerning WebSphere Liberty. According to Transformation Advisor's estimation, the effort required to migrate this application from traditional WebSphere V855 to WebSphere Liberty (which supports JEE6 partly, Java EE 7 and 8, and more) is estimate to take 0.5 days of development time. Now, let's examine the analysis details for the Customer Order Services application to understand why the migration efforts for WebSphere Liberty are less than those for Open Liberty. 
 
+![Initial landing Page](/Image/Picture1.png)
+
+3. Initially, we turn our attention to the Complexity Rules section. Here, Transformation Advisor has determined that code changes may be necessary for the application to run on WebSphere Liberty.
+
+![Initial landing Page](/Image/Picture2.png)
+
+4. However, upon moving to the Issues Details section, we observe that Transformation Advisor has only detected a critical technology issue related to accessing Apache Wink APIs. Unlike Open Liberty, there are no issues regarding JPA, as WebSphere Liberty supports JPA 2.0 and, Open JPA.
+
+![Initial landing Page](/Image/28.png)
 ![Initial landing Page](/Image/29.png)
 
+5. Go back to the Transformation Advisor page, scroll to the bottom of the analysis page and click on the Analysis Report link. Then click on OK on the pop up window.
 
+While both WebSphere Liberty and Open Liberty share some similarities, the Technology Report differs between them. To gain more insights, we proceed to the Analysis Report. This report provides the outcomes of the migration rules executed by the Data Collector.
 
+Scrolling down to the Severe Rules section within the Analysis Report, we review the Show Rule Help details. The Rule Help section offers recommended solutions for addressing the identified issue. In this section, there is only one recommendation listed:
 
+The use of system-provided Apache Wink APIs requires configuration: To utilize system-provided third-party APIs in Liberty applications, configuration is necessary to include these APIs. In WebSphere Application Server traditional, these APIs are available without configuration. This change is configuration-only and can be implemented by using a classloader definition in the Liberty server.xml file.
 
+## Step 5: Migration Demonstration
 
+### Websphere Liberty
 
+![Initial landing Page](/Image/30.png)
+
+1. Go back to the Transformation Advisor page, scroll to the top and click on the button View migration plan. In addition to migration recommendations, Transformation Advisor offers assets to expedite deployment by providing a migration plan. This plan includes the generation of various assets such as the Liberty configuration file (server.xml) for deploying the application to Liberty, a pom file for building the application, a Docker file for containerizing the application, and an Application Custom Resource for deploying the application to Kubernetes.
+
+![Initial landing Page](/Image/31.png)
+
+2. Review the migration assets then click on the server.xml.
+
+![Initial landing Page](/Image/32.png)
+![Initial landing Page](/Image/33.png)
+
+3. Let's begin with the Liberty configuration. Transformation Advisor leverages the analysis of the application EAR to generate a list of features required by the application. As the collector not only scrutinizes the application but also its configuration, it generates the Liberty configuration definition for the datasource. To enhance the portability of the application configuration, Transformation Advisor utilizes environment variables for many aspects of the configuration, injecting values retrieved from the current environment.
+
+It's important to note that Transformation Advisor does not collect any passwords. Therefore, the variables for the datasource and keystore do not contain any credentials. This approach ensures security by avoiding the storage or transmission of sensitive information.
+
+### Traditionla WAS
+
+![Initial landing Page](/Image/34.png)
+
+1. Go back to the Transformation Advisor overview page. Then, change the migration target to Compatible runtimes.
+
+![Initial landing Page](/Image/35.png)
+
+2. Click the CustomerOrderServicesApp.ear application name on the WebSphere traditional row.
+
+![Initial landing Page](/Image/36.png)
+
+3. The Inventory Report, Analysis Report and Technology Report are also available for Traditional WAS. For the CustomerOrderService application, migrating to WebSphere Liberty appears relatively straightforward. However, there may be reasons to consider sticking with WebSphere traditional and containerizing the application. Transformation Advisor offers valuable insights to evaluate the efforts required for migration to a WebSphere traditional v9 container. It provides a similar set of reports as it does for Liberty.
+
+![Initial landing Page](/Image/37.png)
+![Initial landing Page](/Image/38.png)
+![Initial landing Page](/Image/39.png)
+
+4. Scroll up to the top of the page and click on the button View migration plan. Additionally, Transformation Advisor goes a step further by providing assets specifically tailored for deploying the application into a WebSphere traditional v9 container. These assets include Python scripts to configure WebSphere traditional, deploy the application, a Dockerfile for deploying the application into WebSphere traditional within a container, and Pipeline resources. These resources are designed to streamline and facilitate the deployment process, offering a comprehensive set of tools for efficient migration and containerization within the WebSphere traditional environment.
+
+## Summary
+
+The demonstration illustrated the process of evaluating an existing Java application using IBM Cloud Transformation Advisor. The primary goal in our scenario of migrating from traditional WebSphere V855 to Liberty is to transition the Customer Order Services application to a cloud-ready new runtime with minimal code changes. Utilizing IBM Cloud Transformation Advisor, we conducted an in-depth analysis of the application's compatibility with traditional WebSphere. The outcome indicated that only minor modifications to three classes would be necessary. In addition to providing insights into the application, Transformation Advisor also furnished various deployment assets.
+
+As demonstrated, Transformation Advisor proves instrumental in expediting the application migration to the cloud, minimizing errors and risks, and significantly reducing time to market. The tool streamlines the process and enhances the efficiency of migrating applications to new runtimes, contributing to a smoother transition to cloud environments.
 
 
 
