@@ -139,6 +139,8 @@ Notably, the recommendation page showcases both Open Liberty and WebSphere Liber
 
 ## STEP 4 : Dive into the analysis phase to review and understand the recommendations provided.
 
+### Open Liberty
+
 Now, let's direct our attention to the recommendations provided by Transformation Advisor specifically for the Customer Order Services application (CustomerOrderServicesApp.ear). According to Transformation Advisor's assessment, the projected effort required to migrate the Customer Order Services application from the traditional WebSphere V855 to Open Liberty (which accommodates JEE7, Java EE 8, and additional features) is estimated at 8 days of development time. To delve deeper into the analysis, let's examine the specific details pertaining to the Customer Order Services application.
 
 ![Initial landing Page](/Image/21.png)
@@ -195,7 +197,17 @@ Within this section, various recommendations are outlined, including:
  
 - Disabling the persistence unit second-level cache and migrating OpenJPA and WebSphere JPA configuration properties: Given that Open Liberty doesn't support JPA 2.0, which implements OpenJPA, the recommendation is to migrate to JPA 2.1, implementing EclipseLink JPA. This transition introduces several changes in the JPA configuration, which are detailed in the provided documentation.
 
+### WebSphere Liberty
 
+![Initial landing Page](/Image/19.png)
+
+Go back to the Recommendation page as shown on the image above and click the CustomerOrderServicesApp.ear application name on the WebSphere Liberty row.
+
+![Initial landing Page](/Image/27.png)
+
+Let's focus on the Transformation Advisor recommendations specific to the Customer Order Services (CustomerOrderServicesApp.ear) application concerning WebSphere Liberty. According to Transformation Advisor's estimation, the effort required to migrate this application from traditional WebSphere V855 to WebSphere Liberty (which supports JEE6 partly, Java EE 7 and 8, and more) is estimate to take 0.5 days of development time. Now, let's examine the analysis details for the Customer Order Services application to understand why the migration efforts for WebSphere Liberty are less than those for Open Liberty. 
+
+![Initial landing Page](/Image/29.png)
 
 
 
