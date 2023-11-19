@@ -182,10 +182,18 @@ Analysis Report: This report outlines potential issues, their severity, and sugg
 6. Go back to the Transformation Advisor page, scroll to the bottom of the analysis page and click on the Analysis Report link. Then, click on OK to open the report in a new tab.
 
 ![Initial landing Page](/Image/n7.png)
-
+![Initial landing Page](/Image/image.png)
 ![Initial landing Page](/Image/26.png)
 
-7. Scroll down to the Severe Rules section and click on the Show rule help link. 
+7.  Finally, let's explore the Analysis Report. This report showcases the outcomes of the migration rules executed by the Data Collector and the corresponding results.
+
+Now, navigate to the Severe Rules section and review the details provided in the Show rule help section. Here, the Rule Help section offers recommended solutions for addressing the identified issues.
+
+Within this section, various recommendations are outlined, including:
+
+- The unavailability of Apache Wink Client APIs and org.codehaus.jackson packages: The suggestion is to utilize standard javax.ws.rs.client APIs where possible or package the API with the application, as the org.apache.wink.client packages are not accessible to JAX-RS applications using the WAS Java EE 7 JAX-RS 2.0 implementation. Similar adjustments are required for org.codehaus.jackson packages.
+ 
+- Disabling the persistence unit second-level cache and migrating OpenJPA and WebSphere JPA configuration properties: Given that Open Liberty doesn't support JPA 2.0, which implements OpenJPA, the recommendation is to migrate to JPA 2.1, implementing EclipseLink JPA. This transition introduces several changes in the JPA configuration, which are detailed in the provided documentation.
 
 
 
