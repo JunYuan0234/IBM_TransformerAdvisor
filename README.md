@@ -165,6 +165,31 @@ Inventory Report: Providing a high-level inventory of each application's content
 
 Analysis Report: This report outlines potential issues, their severity, and suggests possible solutions.
 
+![Initial landing Page](/Image/n1.png)
+
+4. The image above initiate the examination of Technology Report, which opens a new browser window displaying the Application Technology Evaluation Report. This report provides a comprehensive list of Java technologies utilized by the application, indicating whether these technologies are supported by specific runtimes, ranging from Open Liberty to WebSphere traditional for z/OS. The information presented in this report plays a crucial role in assessing the suitability of a particular WebSphere product for the analyzed application.
+
+![Initial landing Page](/Image/n2.png)
+![Initial landing Page](/Image/n3.png)
+![Initial landing Page](/Image/n4.png)
+![Initial landing Page](/Image/n5.png)
+![Initial landing Page](/Image/n6.png)
+
+5. Go back to the Transformation Advisor page, scroll to the bottom of the analysis pageand click on the Inventory Report link, then you will be able to scroll through the images similar as above. Then, we turn our attention to the Inventory Report, offering valuable insights into the application's structure, potential deployment issues, and additional details.
+
+![Initial landing Page](/Image/25.png)
+
+6. Go back to the Transformation Advisor page, scroll to the bottom of the analysis page and click on the Analysis Report link. Then, click on OK to open the report in a new tab.
+
+![Initial landing Page](/Image/n7.png)
+
+![Initial landing Page](/Image/26.png)
+
+7. Scroll down to the Severe Rules section and click on the Show rule help link. 
+
+
+
+
 
 
 
